@@ -57,7 +57,7 @@ int	ft_print_int(int nbr)
 
 int	ft_print_unsign(unsigned int i)
 {
-	int size;
+	int	size;
 
 	size = 0;
 	if (i >= 10)
