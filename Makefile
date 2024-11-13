@@ -12,11 +12,13 @@
 
 NAME = libftprintf.a
 CFLAGS = -Wall -Wextra -Werror
-HEADERS = ./ft_printf.h
+HEADERS = ft_printf.h
 SRCS_D = .
 
 #source files
-SRC = $(SRCS_D)/ft_printf.c
+SRC = $(SRCS_D)/ft_printf.c \
+		$(SRCS_D)/ft_printf_utils.c \
+		$(SRCS_D)/ft_hex_utils.c
 
 #object files
 OBJ = $(SRC:.c=.o)
