@@ -28,16 +28,16 @@ int	ft_printf(const char *format, ...)
 	if (!format)
 		return (-1);
 	while (format[i])
+	{
+		if (format[i] == '%' && format[i + 1])
 		{
-			if (format[i] == '%' && format[i + 1])
-			{
-				size += ft_print_args(args, format[i + 1]);
-				i++;
-			}
-			else
-				size += ft_print_char(format[i]);
+			size += ft_print_args(args, format[i + 1]);
 			i++;
 		}
+		else
+			size += ft_print_char(format[i]);
+		i++;
+	}
 	va_end(args);
 	return (size);
 }
@@ -62,7 +62,6 @@ int	ft_print_args(va_list args, char letter)
 		return (ft_print_char('%'));
 	return (0);
 }
-
 
 // #include <stdio.h>
 // int	main(void)
