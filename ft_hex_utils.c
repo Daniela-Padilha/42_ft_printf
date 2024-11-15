@@ -14,24 +14,19 @@
 
 int	ft_print_ptr(unsigned long ptr)
 {
-	int		size;
 	char	*hex;
 
 	hex = "0123456789abcdef";
+	if (!ptr)
+		return (ft_print_str("(nil)"));
 	write (1, "0x", 2);
-	size = 2;
 	if (ptr >= 16)
-	{
-		ft_print_hex(ptr / 16, 1);
-		size++;
-	}
-	ft_print_char(hex[ptr % 16]);
-	size++;
-	return (size);
+		return (ft_print_hex(ptr, 1) + 2);
+	return (ft_print_char(hex[ptr % 16]));
 }
 
 //lowercase = 1, uppercase = 0
-int	ft_print_hex(unsigned int nbr, int lower)
+int	ft_print_hex(unsigned long nbr, int lower)
 {
 	char	*hex;
 	int		size;
@@ -42,11 +37,7 @@ int	ft_print_hex(unsigned int nbr, int lower)
 	else
 		hex = "0123456789ABCDEF";
 	if (nbr >= 16)
-	{
-		ft_print_hex(nbr / 16, lower);
-		size++;
-	}
-	ft_print_char(hex[nbr % 16]);
-	size++;
+		size = size + ft_print_hex(nbr / 16, lower);
+	size = size + ft_print_char(hex[nbr % 16]);
 	return (size);
 }

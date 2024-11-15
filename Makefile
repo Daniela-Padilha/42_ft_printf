@@ -11,6 +11,7 @@
 # **************************************************************************** #
 
 NAME = libftprintf.a
+TEST_NAME = printf_test.a
 CFLAGS = -Wall -Wextra -Werror
 HEADERS = ft_printf.h
 SRCS_D = .
@@ -20,18 +21,19 @@ SRC = $(SRCS_D)/ft_printf.c \
 		$(SRCS_D)/ft_printf_utils.c \
 		$(SRCS_D)/ft_hex_utils.c
 
+MAIN = $(SRCS_D)/main.c
+
 #object files
 OBJ = $(SRC:.c=.o)
+OBJ_MAIN = $(MAIN:.c=.o)
 
 all: $(NAME)
 
-#compile the lib
 $(NAME): $(OBJ)
 	@ar rcs $(NAME) $(OBJ)
 	@clear
 	@echo "$(BGRN)✨compilation completed✨"
 
-#compile .o files
 %.o: %.c
 	@cc $(CFLAGS) -I $(HEADERS) -c $< -o $@
 	@echo "$(BMAG)Compiling..."
@@ -41,7 +43,7 @@ $(NAME): $(OBJ)
 #remove .o
 clean:
 	@rm -f $(OBJ)
-	@echo "$(BMAG)✨objects removed $(BGRN)successfully✨"
+	@echo "$(BMAG@ar rcs)✨objects removed $(BGRN)successfully✨"
 
 #clean and remove
 fclean: clean
@@ -52,12 +54,29 @@ fclean: clean
 re: fclean all
 	@echo "$(BMAG)✨clean and re-compile was $(BGRN)successfull✨"
 
+#TESTING
+test: all
+	@cc $(CFLAGS) $(MAIN) $(SRC) -o $(TEST_NAME)
+	@clear
+	@echo "$(BGRN)✨test completed✨"
+	@./$(TEST_NAME)
+
+cleantest:
+	@rm -f $(OBJ_MAIN) $(TEST_NAME)
+	@echo "$(BMAG)✨test removed $(BGRN)successfully✨"
+
+retest: cleantest test
+	@echo "$(BMAG)✨clean test and retest was $(BGRN)successfull✨"
+
 #help
 help:
-	@echo "✳$(BMAG) make  $(BWHI) -> $(BMAG)compiles the lib"
-	@echo "$(BWHI)✳$(BMAG) clean $(BWHI) -> $(BMAG)removes all objects"
-	@echo "$(BWHI)✳$(BMAG) fclean $(BWHI)-> $(BMAG)removes all objects plus the program"
-	@echo "$(BWHI)✳$(BMAG) re     $(BWHI)-> $(BMAG)removes all objects plus the program and recompiles the lib"
+	@echo "✳$(BMAG) make  $(BWHI)    -> $(BMAG)compiles the lib"
+	@echo "$(BWHI)✳$(BMAG) test      $(BWHI)-> $(BMAG)compiles the lib with the main"
+	@echo "$(BWHI)✳$(BMAG) clean    $(BWHI) -> $(BMAG)removes all objects"
+	@echo "$(BWHI)✳$(BMAG) fclean    $(BWHI)-> $(BMAG)removes all objects plus the program"
+	@echo "$(BWHI)✳$(BMAG) re        $(BWHI)-> $(BMAG)removes all objects plus the program and recompiles the lib"
+	@echo "$(BWHI)✳$(BMAG) cleantest $(BWHI)-> $(BMAG)removes all test files"
+	@echo "$(BWHI)✳$(BMAG) retest    $(BWHI)-> $(BMAG)removes test files and recompiles"
 
 #Phony targets to avoid clashes
 .PHONY: all clean fclean re help
@@ -81,21 +100,3 @@ BBLU	= $(shell tput setaf 12)
 BMAG	= $(shell tput setaf 13)
 BCYA	= $(shell tput setaf 14)
 BWHI	= $(shell tput setaf 15)
-
-#color list for background
-BLA_BACK	= $(shell tput setab 0)
-RED_BACK   	= $(shell tput setab 1)
-GRN_BACK	= $(shell tput setab 2)
-YEL_BACK	= $(shell tput setab 3)
-BLU_BACK	= $(shell tput setab 4)
-MAG_BACK	= $(shell tput setab 5)
-CYA_BACK	= $(shell tput setab 6)
-WHI_BACK	= $(shell tput setab 7)
-GRE_BACK	= $(shell tput setab 8)
-BRED_BACK	= $(shell tput setab 9)
-BGRN_BACK	= $(shell tput setab 10)
-BYEL_BACK	= $(shell tput setab 11)
-BBLU_BACK	= $(shell tput setab 12)
-BMAG_BACK	= $(shell tput setab 13)
-BCYA_BACK	= $(shell tput setab 14)
-BWHI_BACK	= $(shell tput setab 15)

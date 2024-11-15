@@ -24,6 +24,6 @@ int	ft_print_str(char *str);
 int	ft_print_int(int nbr);
 int	ft_print_unsign(unsigned int i);
 int	ft_print_ptr(unsigned long ptr);
-int	ft_print_hex(unsigned int nbr, int lower);
+int	ft_print_hex(unsigned long nbr, int lower);
 
 #endif
