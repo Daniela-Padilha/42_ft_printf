@@ -17,13 +17,13 @@
 # include <stdlib.h>
 # include <unistd.h>
 
-int	ft_printf(const char *format, ...);
-int	ft_print_args(va_list args, char letter);
-int	ft_print_char(char c);
-int	ft_print_str(char *str);
-int	ft_print_int(int nbr);
-int	ft_print_unsign(unsigned int i);
-int	ft_print_ptr(unsigned long ptr);
-int	ft_print_hex(unsigned long nbr, int lower);
+int			ft_printf(const char *format, ...);
+int			ft_print_args(va_list args, char letter);
+int			ft_print_char(char c);
+int			ft_print_str(char *str);
+int			ft_print_int(int nbr);
+int			ft_print_unsign(unsigned int i);
+int			ft_print_ptr(unsigned long ptr);
+int			ft_print_hex(unsigned int nbr, int lower);
 
 #endif

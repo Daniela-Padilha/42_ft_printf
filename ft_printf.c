@@ -55,9 +55,9 @@ int	ft_print_args(va_list args, char letter)
 	if (letter == 'u')
 		return (ft_print_unsign(va_arg(args, unsigned int)));
 	if (letter == 'x')
-		return (ft_print_hex(va_arg(args, unsigned long), 1));
+		return (ft_print_hex(va_arg(args, unsigned int), 1));
 	if (letter == 'X')
-		return (ft_print_hex(va_arg(args, unsigned long), 0));
+		return (ft_print_hex(va_arg(args, unsigned int), 0));
 	if (letter == '%')
 		return (ft_print_char('%'));
 	return (0);
