@@ -13,8 +13,8 @@
 NAME = libftprintf.a
 TEST_NAME = printf_test.a
 CFLAGS = -Wall -Wextra -Werror
-HEADERS = ft_printf.h
 SRCS_D = .
+HEADERS = .
 
 #source files
 SRC = $(SRCS_D)/ft_printf.c \
