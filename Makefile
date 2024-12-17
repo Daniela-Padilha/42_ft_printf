@@ -10,12 +10,13 @@
 #                                                                              #
 # **************************************************************************** #
 
-         ________________________________________________
-________|                                               |_______
-\       |                 NAMES & PATHS                 |      /
- \      |                                               |     /
- /      |_______________________________________________|     \
-/__________)                                        (__________\
+
+#	   ________________________________________________        
+#  _______|                                               |_______
+# \       |                 NAMES & PATHS                 |      /
+#  \      |                                               |     /
+#  /      |_______________________________________________|     \ 
+# /__________)                                        (__________\ 
 
 
 NAME = libftprintf.a
@@ -32,91 +33,87 @@ MAIN = $(SRCS_D)/main.c
 
 #object files
 OBJ = $(SRC:.c=.o)
-OBJ_MAIN = $(MAIN:.c=.o)
 
-         ________________________________________________
-________|                                               |_______
-\       |                FLAGS & COMMANDS               |      /
- \      |                                               |     /
- /      |_______________________________________________|     \
-/__________)                                        (__________\
+#	   ________________________________________________
+#  _______|                                               |_______
+# \       |                FLAGS & COMMANDS               |      /
+#  \      |                                               |     /
+#  /      |_______________________________________________|     \ 
+# /__________)                                        (__________\ 
+
 
 CC = cc
 CFLAGS = -Wall -Wextra -Werror
 RM = rm -f
 AR = ar rcs
 
-         ________________________________________________
-________|                                               |_______
-\       |                    LIB RULES                  |      /
- \      |                                               |     /
- /      |_______________________________________________|     \
-/__________)                                        (__________\
+#          ________________________________________________
+# ________|                                               |_______
+# \       |                    LIB RULES                  |      /
+#  \      |                                               |     /
+#  /      |_______________________________________________|     \ 
+# /__________)                                        (__________\ 
 
 
 all: $(NAME)
 
 $(NAME): $(OBJ)
 	@$(AR) $(NAME) $(OBJ)
-	@clear
-	@echo "$(BGRN)✨compilation completed✨"
+	@echo "$(BGRN)✨Compilation completed✨"
 
 %.o: %.c
 	@$(CC) $(CFLAGS) -I $(HEADERS) -c $< -o $@
 	@echo "$(BMAG)Compiling..."
-	@sleep 0.4
-	@clear
 
-         ________________________________________________
-________|                                               |_______
-\       |                   TEST RULES                  |      /
- \      |                                               |     /
- /      |_______________________________________________|     \
-/__________)                                        (__________\
+#          ________________________________________________
+# ________|                                               |_______
+# \       |                   TEST RULES                  |      /
+#  \      |                                               |     /
+#  /      |_______________________________________________|     \ 
+# /__________)                                        (__________\ 
 
 #TESTING
 test: all
 	@$(CC) $(CFLAGS) $(MAIN) $(SRC) -o $(TEST_NAME)
-	@clear
 	@echo "$(BGRN)$(TEST_NAME) created successfully"
 	@./$(TEST_NAME)
-	@echo "$(BGRN)✨test completed✨"
+	@echo "$(BGRN)✨Test completed✨"
 
 cleantest:
 	@$(RM) $(OBJ_MAIN) $(TEST_NAME)
 	@echo "$(BMAG)✨$(TEST_NAME) was removed✨"
 
 retest: cleantest test
-	@echo "$(BMAG)✨retest was $(BGRN)successfull✨"
+	@echo "$(BMAG)✨Retest was $(BGRN)successfull✨"
 
 
-         ________________________________________________
-________|                                               |_______
-\       |                  CLEAN RULES                  |      /
- \      |                                               |     /
- /      |_______________________________________________|     \
-/__________)                                        (__________\
+#          ________________________________________________
+# ________|                                               |_______
+# \       |                  CLEAN RULES                  |      /
+#  \      |                                               |     /
+#  /      |_______________________________________________|     \ 
+# /__________)                                        (__________\ 
 
 #remove .o
 clean:
 	@$(RM) $(OBJ)
-	@echo "$(BMAG)✨objects removed $(BGRN)successfully✨"
+	@echo "$(BMAG)✨Objects removed $(BGRN)successfully✨"
 
 #clean and remove
 fclean: clean cleantest
 	@$(RM) $(NAME)
-	@echo "$(BMAG)✨program removed $(BGRN)successfully✨"
+	@echo "$(BMAG)✨Program removed $(BGRN)successfully✨"
 
 #remake
 re: fclean all
-	@echo "$(BMAG)✨re-compile was $(BGRN)successfull✨"
+	@echo "$(BMAG)✨Re-compile was $(BGRN)successfull✨"
 
-         ________________________________________________
-________|                                               |_______
-\       |                  HELP RULES                   |      /
- \      |                                               |     /
- /      |_______________________________________________|     \
-/__________)                                        (__________\
+#          ________________________________________________
+# ________|                                               |_______
+# \       |                  HELP RULES                   |      /
+#  \      |                                               |     /
+#  /      |_______________________________________________|     \ 
+# /__________)                                        (__________\ 
 
 #help
 help:
@@ -131,31 +128,32 @@ help:
 #Phony targets to avoid clashes
 .PHONY: all clean fclean re help test cleantest retest
 
-         ________________________________________________
-________|                                               |_______
-\       |                    COLORS                     |      /
- \      |                                               |     /
- /      |_______________________________________________|     \
-/__________)                                        (__________\
+#          ________________________________________________
+# ________|                                               |_______
+# \       |                    COLORS                     |      /
+#  \      |                                               |     /
+#  /      |_______________________________________________|     \ 
+# /__________)                                        (__________\ 
 
 #color list for foreground
 #bash -c 'for c in {0..255}; do tput setaf $c; tput setaf $c | cat -v; echo =$c; done'
 
-BLA		:= $(shell echo "u001b[30m")
-RED		:= $(shell echo "\u001b[31m")
-GRN		:= $(shell echo "\u001b[32m")
-YEL		:= $(shell echo "\u001b[33m")
-BLU		:= $(shell echo "\u001b[34m")
-MAG		:= $(shell echo "\u001b[35m")
-CYA		:= $(shell echo "\u001b[36m")
-WHI		:= $(shell echo "\u001b[37m")
-GRE		:= $(shell echo "\u001b[0m")
-BBLA	:= $(shell echo "\u001b[30;1m")
-BRED 	:= $(shell echo "\u001b[31;1m")
-BGRN	:= $(shell echo "\u001b[32;1m")
-BYEL	:= $(shell echo "\u001b[33;1m")
-BBLU	:= $(shell echo "\u001b[34;1m")
-BMAG	:= $(shell echo "\u001b[35;1m")
-BCYA	:= $(shell echo "\u001b[36;1m")
-BWHI	:= $(shell echo "\u001b[37;1m")
-Reset	:= $(shell echo "\u001b[0m")
+BLA		:= $(echo "u001b[30m")
+RED		:= $(echo "\u001b[31m")
+GRN		:= $(echo "\u001b[32m")
+YEL		:= $(echo "\u001b[33m")
+BLU		:= $(echo "\u001b[34m")
+MAG		:= $(echo "\u001b[35m")
+CYA		:= $(echo "\u001b[36m")
+WHI		:= $(echo "\u001b[37m")
+GRE		:= $(echo "\u001b[0m")
+BBLA	:= $(echo "\u001b[30;1m")
+BRED 	:= $(echo "\u001b[31;1m")
+BGRN	:= $(echo "\u001b[32;1m")
+BYEL	:= $(echo "\u001b[33;1m")
+BBLU	:= $(echo "\u001b[34;1m")
+BMAG	:= $(echo "\u001b[35;1m")
+BCYA	:= $(echo "\u001b[36;1m")
+BWHI	:= $(echo "\u001b[37;1m")
+Reset	:= $(echo "\u001b[0m")
+
