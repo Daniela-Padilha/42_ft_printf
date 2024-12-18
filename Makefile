@@ -61,8 +61,8 @@ $(NAME): $(OBJ)
 	@$(AR) $(NAME) $(OBJ)
 	@echo "$(BGRN)✨Compilation completed✨"
 
-%.o: %.c
-	@$(CC) $(CFLAGS) -I $(HEADERS) -c $< -o $@
+%.o: %.c $(HEADERS)
+	@$(CC) $(CFLAGS) -c $< -o $@
 	@echo "$(BMAG)Compiling..."
 
 #          ________________________________________________
